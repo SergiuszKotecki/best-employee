@@ -89,5 +89,6 @@ fabric.properties
 .idea/inspectionProfiles/
 /api/target
 .idea/sonarlint/
+.idea/
 api/src/main/resources/static/
 api/src/main/resources/templates/
