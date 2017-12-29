@@ -6,7 +6,7 @@ public interface CandidateService {
 
     Candidate createNew(Candidate candidate);
 
-    Candidate get(Candidate candidate);
+    Candidate getById(Long uuid);
 
-    void deleteCandidate (Long id);
+    void deleteCandidate (Long uuid);
 }

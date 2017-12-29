@@ -1,6 +1,6 @@
 package com.employee.api.models;
 
-import lombok.AllArgsConstructor;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,42 +10,43 @@ import javax.validation.constraints.NotNull;
 @Data
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "CANDIDATE_TABLE")
 public class Candidate {
 
     @Id
     @GeneratedValue
+    //@GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @ApiModelProperty(hidden = true)
     @Column(name = "UUID", unique = true, length = Integer.MAX_VALUE)
-    long id;
+    private Long uuid;
 
     @NotNull
     @Column(name = "FIRST_NAME")
-    String firstName;
+    private String firstName;
 
     @NotNull
     @Column(name = "LAST_NAME")
-    String lastName;
+    private String lastName;
 
     @NotNull
     @Column(name = "EMAIL")
-    String email;
+    private String email;
 
     @NotNull
     @Column(name = "DESIRED_POSITION")
-    String desiredPosition;
+    private String desiredPosition;
 
     @NotNull
     @Column(name = "SKILL_LEVEL")
-    Integer skillLevel;
+    private Integer skillLevel;
 
     @NotNull
     @Column(name = "CITY")
-    String city;
+    private String city;
 
     @NotNull
     @Column(name = "IS_REMOTE")
-    boolean remote;
+    private boolean remote;
 
     public Candidate(String firstName, String lastName, String email, String desiredPosition, Integer skillLevel, String city, boolean remote) {
         this.firstName = firstName;
