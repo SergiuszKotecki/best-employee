@@ -1,15 +1,24 @@
 package com.employee.api.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Data
 @Entity
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "CANDIDATE_TABLE")
 public class Candidate {
 
@@ -48,13 +57,14 @@ public class Candidate {
     @Column(name = "IS_REMOTE")
     private boolean remote;
 
-    public Candidate(String firstName, String lastName, String email, String desiredPosition, Integer skillLevel, String city, boolean remote) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.desiredPosition = desiredPosition;
-        this.skillLevel = skillLevel;
-        this.city = city;
-        this.remote = remote;
-    }
+    @Column(nullable = false, updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
+    private Date createdAt;
+
+    @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    @LastModifiedDate
+    private Date updatedAt;
+
 }
