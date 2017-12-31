@@ -15,7 +15,7 @@ import java.util.List;
 @Transactional
 public class CandidateServiceImpl implements CandidateService {
 
-    private final static int PAGESIZE = 3;
+    private static final int PAGESIZE = 3;
 
     @Autowired
     CandidateRepository candidateRepository;
@@ -27,8 +27,7 @@ public class CandidateServiceImpl implements CandidateService {
 
     @Override
     public Candidate getById(Long uuid) {
-        Candidate cand = candidateRepository.findOne(uuid);
-        return cand;
+        return candidateRepository.findOne(uuid);
     }
 
     @Override

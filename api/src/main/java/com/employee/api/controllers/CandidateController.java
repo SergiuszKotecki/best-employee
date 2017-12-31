@@ -46,8 +46,8 @@ public class CandidateController {
     @PutMapping(value = "/candidate/{id}")
     public HttpEntity<Candidate> updateCandidateById(@PathVariable("id") String id, @RequestBody Candidate candidate) {
         //TODO: create Candidate DTO model and parse it to Candidate Model
-        candidate = candidateService.uppdateCandidateData(Long.valueOf(id), candidate);
-        return new ResponseEntity<>(candidate, HttpStatus.OK);
+        Candidate cand = candidateService.uppdateCandidateData(Long.valueOf(id), candidate);
+        return new ResponseEntity<>(cand, HttpStatus.OK);
     }
 
     private boolean isNull(Candidate candidate) {
