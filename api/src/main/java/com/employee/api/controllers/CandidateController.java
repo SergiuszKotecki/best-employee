@@ -30,10 +30,9 @@ public class CandidateController {
         return hasEntity(cand);
     }
 
-    @GetMapping(value = "/candidate/{pageNumber}")
-    public HttpEntity<List<Candidate>> getAllCandidates(@PathVariable Integer pageNumber){
-        List<Candidate> candidates = candidateService.getAllCandidates(pageNumber);
-
+    @GetMapping(value = "/candidate/")
+    public HttpEntity<List<Candidate>> getAllCandidates(){
+        List<Candidate> candidates = candidateService.getAllCandidates();
         return new ResponseEntity<>(candidates, HttpStatus.OK);
     }
 

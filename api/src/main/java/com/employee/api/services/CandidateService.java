@@ -14,6 +14,6 @@ public interface CandidateService {
 
     void deleteCandidate (Long uuid);
 
-    List<Candidate> getAllCandidates(int pageNumber);
+    List<Candidate> getAllCandidates();
 
 }
