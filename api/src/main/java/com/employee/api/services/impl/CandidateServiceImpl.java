@@ -13,8 +13,6 @@ import java.util.List;
 @Transactional
 public class CandidateServiceImpl implements CandidateService {
 
-    private static final int PAGESIZE = 3;
-
     @Autowired
     CandidateRepository candidateRepository;
 

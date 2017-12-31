@@ -12,6 +12,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -24,47 +25,49 @@ public class Candidate {
 
     @Id
     @GeneratedValue
-    //@GenericGenerator(name = "uuid2", strategy = "uuid2")
     @ApiModelProperty(hidden = true)
-    @Column(name = "UUID", unique = true, length = Integer.MAX_VALUE)
+    //@GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(name = "uuid", unique = true, length = Integer.MAX_VALUE)
     private Long uuid;
 
+    @ElementCollection
+    @CollectionTable(
+            name="CANDIDATE_SKILLS_TABLE",
+            joinColumns=@JoinColumn(name="UUID")
+    )
+    private List<CandidateSkills> skills;
+
     @NotNull
-    @Column(name = "FIRST_NAME")
     private String firstName;
 
     @NotNull
-    @Column(name = "LAST_NAME")
     private String lastName;
 
     @NotNull
-    @Column(name = "EMAIL")
     private String email;
 
     @NotNull
-    @Column(name = "DESIRED_POSITION")
     private String desiredPosition;
 
     @NotNull
-    @Column(name = "SKILL_LEVEL")
     private Integer skillLevel;
 
     @NotNull
-    @Column(name = "CITY")
     private String city;
 
     @NotNull
-    @Column(name = "IS_REMOTE")
     private boolean remote;
 
-    @Column(nullable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
+    //@ApiModelProperty(hidden = true) TODO:Add DTO and uncomment this
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false, updatable = false)
     private Date createdAt;
 
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
+    @Column(nullable = false)
+    //@ApiModelProperty(hidden = true) TODO:Add DTO and uncomment this
+    @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
 }

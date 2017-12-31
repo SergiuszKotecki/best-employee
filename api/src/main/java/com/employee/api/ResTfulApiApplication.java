@@ -11,5 +11,7 @@ public class ResTfulApiApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(ResTfulApiApplication.class, args);
 		context.getBean(FakeCandidateFactory.class).candidateGenerator();
+
+		//SpringApplication.run(ResTfulApiApplication.class, args);
 	}
 }
