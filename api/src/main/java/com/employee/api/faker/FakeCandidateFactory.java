@@ -18,30 +18,38 @@ public class FakeCandidateFactory {
 
 
     public void candidateGenerator() {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 50; i++) {
             Candidate candidate = createCandidate();
+
             candidateRepository.save(candidate);
         }
     }
 
     private Candidate createCandidate() {
-        return Candidate.builder()
+        Candidate candidate = Candidate.builder()
                 .firstName(getNameFromList())
                 .lastName(getNameFromList())
-                .email(getNameFromList() + "@gmail.com")
                 .desiredPosition(getPositionFromList())
-                .skillLevel(2)
+                .devLevel(2)
                 .city(getCityFromList())
                 .createdAt(new Date())
                 .updatedAt(new Date())
                 .remote(true)
                 .skills(generateSkills())
                 .build();
+        candidate.setEmail(candidate.getFirstName() + "@fakeGmail.com");
+
+        return candidate;
     }
 
     private List<CandidateSkills> generateSkills() {
         List<CandidateSkills> skillsList = new ArrayList<>();
-        skillsList.add(new CandidateSkills("Java", 1));
+        List<String> skillNames = Arrays.asList("Java", "js", "ROR", "TypeScript", "Docker", "K8s", "css3", "html5");
+        List<Integer> skillLevel = Arrays.asList(1, 2, 3);
+        for (int i = 0; i < chooseRandomItemFromList(skillLevel); i++) {
+            skillsList.add(new CandidateSkills(chooseRandomStringFromList(skillNames), chooseRandomItemFromList(skillLevel)));
+        }
+
         return skillsList;
     }
 
@@ -49,22 +57,28 @@ public class FakeCandidateFactory {
         List<String> names = Arrays.asList("Adam", "Bartek", "Tomasz", "Aaberg", "Aalst",
                 "Aara", "Aaren", "Aarika", "Aaron", "Aaronson", "Ab", "Aba", "Abad",
                 "Abagael", "Abagail", "Abana", "Abate", "Abba");
-        return generateRandomItemFromList(names);
+        return chooseRandomStringFromList(names);
     }
 
     private String getPositionFromList() {
         List<String> positions = Arrays.asList("Developer", "IT developer", "Java Developer", "Junior Java Developer");
-        return generateRandomItemFromList(positions);
+        return chooseRandomStringFromList(positions);
     }
 
     private String getCityFromList() {
-        List<String> city = Arrays.asList("Warszawa", "Sopot", "Lublin", "Jędrzejów");
-        return generateRandomItemFromList(city);
+        List<String> city = Arrays.asList("Warszawa", "Sopot", "Lublin", "Jędrzejów", "Częstochowa", "Nowa Brzeźnica");
+        return chooseRandomStringFromList(city);
     }
 
-    private String generateRandomItemFromList(List<String> itemsList) {
+
+    private String chooseRandomStringFromList(List<String> itemsList) {
         Random random = new Random();
-        return itemsList.get(random.nextInt(itemsList.size() - 1));
+        return itemsList.get(random.nextInt(itemsList.size()));
+    }
+
+    private Integer chooseRandomItemFromList(List<Integer> itemsList) {
+        Random random = new Random();
+        return itemsList.get(random.nextInt(itemsList.size()));
     }
 
 

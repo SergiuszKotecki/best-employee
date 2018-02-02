@@ -1,6 +1,7 @@
 package com.employee.api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.istack.internal.NotNull;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,7 +11,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -20,8 +21,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Table(name = "CANDIDATE_TABLE")
-public class Candidate {
+public class Candidate implements Serializable {
 
     @Id
     @GeneratedValue
@@ -30,10 +30,10 @@ public class Candidate {
     @Column(name = "uuid", unique = true, length = Integer.MAX_VALUE)
     private Long uuid;
 
-    @ElementCollection
-    @CollectionTable(
-            name="CANDIDATE_SKILLS_TABLE",
-            joinColumns=@JoinColumn(name="UUID")
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "skill",
+            joinColumns = @JoinColumn(name = "candidate_uuid"),
+            inverseJoinColumns = @JoinColumn(name = "Candidate_Skills_id")
     )
     private List<CandidateSkills> skills;
 
@@ -50,7 +50,7 @@ public class Candidate {
     private String desiredPosition;
 
     @NotNull
-    private Integer skillLevel;
+    private Integer devLevel;
 
     @NotNull
     private String city;
@@ -70,4 +70,8 @@ public class Candidate {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
+   /* private void addSkills(CandidateSkills skill){
+        skills.add(skill);
+    }
+*/
 }

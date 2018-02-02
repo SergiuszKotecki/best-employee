@@ -4,8 +4,13 @@ import com.employee.api.faker.FakeCandidateFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Import;
+import springfox.documentation.spring.data.rest.configuration.SpringDataRestConfiguration;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
+@EnableSwagger2
+@Import(SpringDataRestConfiguration.class)
 public class ResTfulApiApplication {
 
 	public static void main(String[] args) {
