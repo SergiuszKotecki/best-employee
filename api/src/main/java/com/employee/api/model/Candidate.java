@@ -1,5 +1,6 @@
 package com.employee.api.model;
 
+import com.employee.api.config.LocalDateTimeAttributeConverter;
 import com.employee.api.model.enums.SkillLevel;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.internal.NotNull;
@@ -61,15 +62,15 @@ public class Candidate implements Serializable {
     private boolean remote;
 
     @CreatedDate
-    //@ApiModelProperty(hidden = true) TODO:Add DTO and uncomment this
-    @Temporal(TemporalType.TIMESTAMP)
+    @ApiModelProperty(hidden = true)
+    @Convert(converter = LocalDateTimeAttributeConverter.class)
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @LastModifiedDate
     @Column(nullable = false)
-    //@ApiModelProperty(hidden = true) TODO:Add DTO and uncomment this
-    @Temporal(TemporalType.TIMESTAMP)
+    @Convert(converter = LocalDateTimeAttributeConverter.class)
+    @ApiModelProperty(hidden = true)
     private LocalDateTime updatedAt;
 
 }
