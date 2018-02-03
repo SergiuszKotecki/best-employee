@@ -55,7 +55,7 @@ public class Candidate implements Serializable {
     private SkillLevel devLevel;
 
     @NotNull
-    private String city;
+    private Location location;
 
     @NotNull
     private boolean remote;

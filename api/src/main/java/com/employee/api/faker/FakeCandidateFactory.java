@@ -2,6 +2,7 @@ package com.employee.api.faker;
 
 import com.employee.api.model.Candidate;
 import com.employee.api.model.CandidateSkills;
+import com.employee.api.model.Location;
 import com.employee.api.model.enums.SkillLevel;
 import com.employee.api.repository.CandidateRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -32,7 +33,7 @@ public class FakeCandidateFactory {
                 .lastName(getNameFromList())
                 .desiredPosition(getPositionFromList())
                 .devLevel(SkillLevel.REGULAR)
-                .city(getCityFromList())
+                .location(getCityFromList())
                 .createdAt(new Date())
                 .updatedAt(new Date())
                 .remote(true)
@@ -66,9 +67,9 @@ public class FakeCandidateFactory {
         return chooseRandomStringFromList(positions);
     }
 
-    private String getCityFromList() {
+    private Location getCityFromList() {
         List<String> city = Arrays.asList("Warszawa", "Sopot", "Lublin", "Jędrzejów", "Częstochowa", "Nowa Brzeźnica");
-        return chooseRandomStringFromList(city);
+        return new Location("Poland", chooseRandomStringFromList(city), "Pomorze", 00000);
     }
 
 
