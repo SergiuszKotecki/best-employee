@@ -1,5 +1,6 @@
 package com.employee.api.model;
 
+import com.employee.api.model.enums.SkillLevel;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.internal.NotNull;
 import io.swagger.annotations.ApiModelProperty;
@@ -51,7 +52,7 @@ public class Candidate implements Serializable {
     private String desiredPosition;
 
     @NotNull
-    private Integer devLevel;
+    private SkillLevel devLevel;
 
     @NotNull
     private String city;

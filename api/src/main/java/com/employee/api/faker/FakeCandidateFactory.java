@@ -2,6 +2,7 @@ package com.employee.api.faker;
 
 import com.employee.api.model.Candidate;
 import com.employee.api.model.CandidateSkills;
+import com.employee.api.model.enums.SkillLevel;
 import com.employee.api.repository.CandidateRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class FakeCandidateFactory {
                 .firstName(getNameFromList())
                 .lastName(getNameFromList())
                 .desiredPosition(getPositionFromList())
-                .devLevel(2)
+                .devLevel(SkillLevel.REGULAR)
                 .city(getCityFromList())
                 .createdAt(new Date())
                 .updatedAt(new Date())
