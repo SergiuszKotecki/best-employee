@@ -1,8 +1,8 @@
-package com.employee.api.controllers;
+package com.employee.api.controller;
 
 
-import com.employee.api.models.Candidate;
-import com.employee.api.services.CandidateService;
+import com.employee.api.model.Candidate;
+import com.employee.api.service.CandidateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -26,7 +26,7 @@ public class CandidateController {
 
     @GetMapping(value = "/candidate/{id}")
     public HttpEntity<Candidate> getCandidateById(@PathVariable("id") String id) {
-        Candidate cand = candidateService.getById(Long.valueOf(id));
+        Candidate cand = candidateService.getById(id);
         return hasEntity(cand);
     }
 
@@ -38,14 +38,14 @@ public class CandidateController {
 
     @DeleteMapping(value = "/candidate/{id}")
     public HttpEntity<Candidate> deleteCandidateById(@PathVariable("id") String id) {
-        candidateService.deleteCandidate(Long.valueOf(id));
+        candidateService.deleteCandidate(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping(value = "/candidate/{id}")
     public HttpEntity<Candidate> updateCandidateById(@PathVariable("id") String id, @RequestBody Candidate candidate) {
         //TODO: create Candidate DTO model and parse it to Candidate Model
-        Candidate cand = candidateService.uppdateCandidateData(Long.valueOf(id), candidate);
+        Candidate cand = candidateService.uppdateCandidateData(id, candidate);
         return new ResponseEntity<>(cand, HttpStatus.OK);
     }
 

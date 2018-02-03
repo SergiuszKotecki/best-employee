@@ -1,4 +1,4 @@
-package com.employee.api.models;
+package com.employee.api.model;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
@@ -19,7 +19,7 @@ public class CandidateSkills implements Serializable{
 
     @Id
     @GeneratedValue
-    long id;
+    private int id;
 
     private String skillName;
 

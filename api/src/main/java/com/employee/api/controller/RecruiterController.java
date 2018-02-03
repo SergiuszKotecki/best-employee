@@ -1,4 +1,4 @@
-package com.employee.api.controllers;
+package com.employee.api.controller;
 
 public class RecruiterController {
 

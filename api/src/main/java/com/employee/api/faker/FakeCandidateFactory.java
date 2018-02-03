@@ -1,8 +1,8 @@
 package com.employee.api.faker;
 
-import com.employee.api.models.Candidate;
-import com.employee.api.models.CandidateSkills;
-import com.employee.api.repositories.CandidateRepository;
+import com.employee.api.model.Candidate;
+import com.employee.api.model.CandidateSkills;
+import com.employee.api.repository.CandidateRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

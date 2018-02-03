@@ -1,8 +1,8 @@
-package com.employee.api.services.impl;
+package com.employee.api.service.impl;
 
-import com.employee.api.models.Candidate;
-import com.employee.api.repositories.CandidateRepository;
-import com.employee.api.services.CandidateService;
+import com.employee.api.model.Candidate;
+import com.employee.api.repository.CandidateRepository;
+import com.employee.api.service.CandidateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,12 +22,12 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
-    public Candidate getById(Long uuid) {
+    public Candidate getById(String uuid) {
         return candidateRepository.findOne(uuid);
     }
 
     @Override
-    public Candidate uppdateCandidateData(Long uuid, Candidate candidate) {
+    public Candidate uppdateCandidateData(String uuid, Candidate candidate) {
         Candidate cand = candidateRepository.findOne(uuid);
         cand.setFirstName(candidate.getFirstName());
         candidateRepository.save(cand);
@@ -35,7 +35,7 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
-    public void deleteCandidate(Long uuid) {
+    public void deleteCandidate(String uuid) {
         candidateRepository.delete(uuid);
     }
 

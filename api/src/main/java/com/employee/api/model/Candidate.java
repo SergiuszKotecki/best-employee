@@ -1,4 +1,4 @@
-package com.employee.api.models;
+package com.employee.api.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.internal.NotNull;
@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -24,11 +25,11 @@ import java.util.List;
 public class Candidate implements Serializable {
 
     @Id
-    @GeneratedValue
     @ApiModelProperty(hidden = true)
-    //@GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(name = "uuid", unique = true, length = Integer.MAX_VALUE)
-    private Long uuid;
+    @GeneratedValue(generator = "uuid")
+    @Column(name = "uuid", unique = true)
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    private String uuid;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "skill",
@@ -70,8 +71,4 @@ public class Candidate implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
-   /* private void addSkills(CandidateSkills skill){
-        skills.add(skill);
-    }
-*/
 }
