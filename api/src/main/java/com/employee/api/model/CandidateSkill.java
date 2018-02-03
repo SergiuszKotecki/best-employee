@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 //@Table(name = "CANDIDATE_TABLE_SKILLS")
-public class CandidateSkills implements Serializable{
+public class CandidateSkill implements Serializable{
 
     @Id
     @GeneratedValue
@@ -31,7 +31,7 @@ public class CandidateSkills implements Serializable{
     @ApiModelProperty(hidden = true)
     private List<Candidate> candidates;
 
-    public CandidateSkills(String skillName, int skillLevel) {
+    public CandidateSkill(String skillName, int skillLevel) {
         this.skillName = skillName;
         this.skillLevel = skillLevel;
     }

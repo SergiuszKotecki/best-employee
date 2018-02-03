@@ -1,7 +1,7 @@
 package com.employee.api.faker;
 
 import com.employee.api.model.Candidate;
-import com.employee.api.model.CandidateSkills;
+import com.employee.api.model.CandidateSkill;
 import com.employee.api.model.Location;
 import com.employee.api.model.enums.SkillLevel;
 import com.employee.api.repository.CandidateRepository;
@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Slf4j
 @Component
@@ -24,7 +21,7 @@ public class FakeCandidateFactory {
 
 
     public void candidateGenerator() {
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 10; i++) {
             Candidate candidate = createCandidate();
             candidateRepository.save(candidate);
         }
@@ -48,12 +45,12 @@ public class FakeCandidateFactory {
         return candidate;
     }
 
-    private List<CandidateSkills> generateSkills() {
-        List<CandidateSkills> skillsList = new ArrayList<>();
+    private Set<CandidateSkill> generateSkills() {
+        Set<CandidateSkill> skillsList = new HashSet<>();
         List<String> skillNames = Arrays.asList("Java", "js", "ROR", "TypeScript", "Docker", "K8s", "css3", "html5");
         List<Integer> skillLevel = Arrays.asList(1, 2, 3);
         for (int i = 0; i < chooseRandomItemFromList(skillLevel); i++) {
-            skillsList.add(new CandidateSkills(chooseRandomStringFromList(skillNames), chooseRandomItemFromList(skillLevel)));
+            skillsList.add(new CandidateSkill(chooseRandomStringFromList(skillNames), chooseRandomItemFromList(skillLevel)));
         }
 
         return skillsList;

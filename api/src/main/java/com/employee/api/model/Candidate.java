@@ -1,6 +1,6 @@
 package com.employee.api.model;
 
-import com.employee.api.config.LocalDateTimeAttributeConverter;
+import com.employee.api.config.LocalDateTimeConverter;
 import com.employee.api.model.enums.SkillLevel;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.internal.NotNull;
@@ -16,7 +16,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -36,9 +37,9 @@ public class Candidate implements Serializable {
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "skill",
             joinColumns = @JoinColumn(name = "candidate_uuid"),
-            inverseJoinColumns = @JoinColumn(name = "Candidate_Skills_id")
+            inverseJoinColumns = @JoinColumn(name = "candidate_skills_id")
     )
-    private List<CandidateSkills> skills;
+    private Set<CandidateSkill> skills = new HashSet<>();
 
     @NotNull
     private String firstName;
@@ -63,13 +64,13 @@ public class Candidate implements Serializable {
 
     @CreatedDate
     @ApiModelProperty(hidden = true)
-    @Convert(converter = LocalDateTimeAttributeConverter.class)
+    @Convert(converter = LocalDateTimeConverter.class)
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @LastModifiedDate
     @Column(nullable = false)
-    @Convert(converter = LocalDateTimeAttributeConverter.class)
+    @Convert(converter = LocalDateTimeConverter.class)
     @ApiModelProperty(hidden = true)
     private LocalDateTime updatedAt;
 
