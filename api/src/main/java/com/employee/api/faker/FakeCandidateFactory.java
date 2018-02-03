@@ -9,7 +9,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 @Slf4j
 @Component
@@ -27,14 +31,15 @@ public class FakeCandidateFactory {
     }
 
     private Candidate createCandidate() {
+        LocalDateTime timeNow = LocalDateTime.now();
         Candidate candidate = Candidate.builder()
                 .firstName(getNameFromList())
                 .lastName(getNameFromList())
                 .desiredPosition(getPositionFromList())
                 .devLevel(SkillLevel.REGULAR)
                 .location(getCityFromList())
-                .createdAt(new Date())
-                .updatedAt(new Date())
+                .createdAt(timeNow)
+                .updatedAt(timeNow)
                 .remote(true)
                 .skills(generateSkills())
                 .build();
