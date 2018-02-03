@@ -5,7 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Embeddable;
+
 @Data
+@Embeddable
 @NoArgsConstructor
 @AllArgsConstructor
 public class Location {
@@ -16,6 +19,5 @@ public class Location {
 
     private String state;
 
-    private int zipcode;
-
+    private String zipcode;
 }

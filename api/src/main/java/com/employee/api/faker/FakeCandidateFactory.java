@@ -22,7 +22,6 @@ public class FakeCandidateFactory {
     public void candidateGenerator() {
         for (int i = 0; i < 50; i++) {
             Candidate candidate = createCandidate();
-
             candidateRepository.save(candidate);
         }
     }
@@ -68,8 +67,8 @@ public class FakeCandidateFactory {
     }
 
     private Location getCityFromList() {
-        List<String> city = Arrays.asList("Warszawa", "Sopot", "Lublin", "Jędrzejów", "Częstochowa", "Nowa Brzeźnica");
-        return new Location("Poland", chooseRandomStringFromList(city), "Pomorze", 00000);
+        List<String> city = Arrays.asList("Warszawa", "Sopot", "Lublin", "Jędrzejów", "Częstochowa", "Gdańsk");
+        return new Location("Poland", chooseRandomStringFromList(city), "Pomorze", "00-000");
     }
 
 

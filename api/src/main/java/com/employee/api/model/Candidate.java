@@ -54,7 +54,7 @@ public class Candidate implements Serializable {
     @NotNull
     private SkillLevel devLevel;
 
-    @NotNull
+    @Embedded
     private Location location;
 
     @NotNull
