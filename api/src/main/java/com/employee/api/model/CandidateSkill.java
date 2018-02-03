@@ -19,7 +19,7 @@ public class CandidateSkill implements Serializable{
 
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
 
     private String skillName;
 

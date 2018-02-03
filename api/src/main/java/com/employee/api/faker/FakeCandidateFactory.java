@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.PersistenceException;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -17,13 +18,17 @@ import java.util.*;
 public class FakeCandidateFactory {
 
     @Autowired
-    CandidateRepository candidateRepository;
+    private CandidateRepository candidateRepository;
 
 
     public void candidateGenerator() {
         for (int i = 0; i < 10; i++) {
             Candidate candidate = createCandidate();
-            candidateRepository.save(candidate);
+            try {
+                candidateRepository.save(candidate);
+            } catch (PersistenceException e) {
+                log.info(e.toString());
+            }
         }
     }
 
