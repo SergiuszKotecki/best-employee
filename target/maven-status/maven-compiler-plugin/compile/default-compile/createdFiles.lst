@@ -1,11 +1,3 @@
-com/employee/api/controllers/RecruiterController.class
-com/employee/api/models/Candidate.class
-com/employee/api/models/CandidateSkills.class
 com/employee/api/ResTfulApiApplication.class
-com/employee/api/services/impl/CandidateServiceImpl.class
-com/employee/api/models/Candidate$CandidateBuilder.class
-com/employee/api/services/CandidateService.class
-com/employee/api/controllers/CandidateController.class
 com/employee/api/config/SwaggerConfig.class
 com/employee/api/faker/FakeCandidateFactory.class
-com/employee/api/repositories/CandidateRepository.class
