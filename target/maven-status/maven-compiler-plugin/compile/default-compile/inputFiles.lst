@@ -1,0 +1,10 @@
+/home/sergiusz/learnspace/best-employee/api/src/main/java/com/employee/api/services/CandidateService.java
+/home/sergiusz/learnspace/best-employee/api/src/main/java/com/employee/api/config/SwaggerConfig.java
+/home/sergiusz/learnspace/best-employee/api/src/main/java/com/employee/api/controllers/CandidateController.java
+/home/sergiusz/learnspace/best-employee/api/src/main/java/com/employee/api/models/Candidate.java
+/home/sergiusz/learnspace/best-employee/api/src/main/java/com/employee/api/faker/FakeCandidateFactory.java
+/home/sergiusz/learnspace/best-employee/api/src/main/java/com/employee/api/models/CandidateSkills.java
+/home/sergiusz/learnspace/best-employee/api/src/main/java/com/employee/api/services/impl/CandidateServiceImpl.java
+/home/sergiusz/learnspace/best-employee/api/src/main/java/com/employee/api/repositories/CandidateRepository.java
+/home/sergiusz/learnspace/best-employee/api/src/main/java/com/employee/api/ResTfulApiApplication.java
+/home/sergiusz/learnspace/best-employee/api/src/main/java/com/employee/api/controllers/RecruiterController.java
