@@ -3,8 +3,10 @@ package com.employee.api.faker;
 import com.employee.api.model.Candidate;
 import com.employee.api.model.CandidateSkill;
 import com.employee.api.model.Location;
-import com.employee.api.model.enums.SkillLevel;
+import com.employee.api.model.enums.RoleEnum;
+import com.employee.api.model.enums.SkillLevelEnum;
 import com.employee.api.repository.CandidateRepository;
+import com.employee.api.service.RoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,10 +22,18 @@ public class FakeCandidateFactory {
     @Autowired
     private CandidateRepository candidateRepository;
 
+    @Autowired
+
+    private RoleService roleService;
+
+    private static int c =0;
+
 
     public void candidateGenerator() {
-        for (int i = 0; i < 10; i++) {
+                for (int i = 0; i < 100; i++) {
             Candidate candidate = createCandidate();
+            candidate.setEmail(candidate.getFirstName()+ i + "@fakeGmail.com");
+            candidate.setAuthorities(Collections.singletonList(roleService.findByAuthority(RoleEnum.CANDIDATE)));
             try {
                 candidateRepository.save(candidate);
             } catch (PersistenceException e) {
@@ -35,18 +45,23 @@ public class FakeCandidateFactory {
     private Candidate createCandidate() {
         LocalDateTime timeNow = LocalDateTime.now();
         Candidate candidate = Candidate.builder()
-                .firstName(getNameFromList())
-                .lastName(getNameFromList())
+                .firstName(getNameFromList()+c)
+                .lastName(getNameFromList()+c)
                 .desiredPosition(getPositionFromList())
-                .devLevel(SkillLevel.REGULAR)
+                .devLevel(SkillLevelEnum.REGULAR)
                 .location(getCityFromList())
                 .createdAt(timeNow)
                 .updatedAt(timeNow)
                 .remote(true)
+                .isAccountNonExpired(true)
+                .isAccountNonLocked(true)
+                .isCredentialsNonExpired(true)
+                .isEnabled(true)
+                .password("12345"+c)
                 .skills(generateSkills())
                 .build();
-        candidate.setEmail(candidate.getFirstName() + "@fakeGmail.com");
 
+        candidate.setUsername(candidate.getFirstName() + candidate.getLastName());
         return candidate;
     }
 
@@ -62,6 +77,7 @@ public class FakeCandidateFactory {
     }
 
     private String getNameFromList() {
+        c++; //:-)
         List<String> names = Arrays.asList("Adam", "Bartek", "Tomasz", "Aaberg", "Aalst",
                 "Aara", "Aaren", "Aarika", "Aaron", "Aaronson", "Ab", "Aba", "Abad",
                 "Abagael", "Abagail", "Abana", "Abate", "Abba");

@@ -16,4 +16,16 @@ public interface CandidateService {
 
     List<Candidate> getAllCandidates();
 
+    String registerNewUser(Candidate candidate);
+
+    String save(Candidate candidate);
+
+    Iterable<Candidate> findAll();
+
+    Candidate findByEmail(String email);
+
+    Candidate findByUsername(String username);
+
+    Candidate findById(String id);
+
 }

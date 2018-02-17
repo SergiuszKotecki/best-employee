@@ -17,6 +17,12 @@ public class CandidateController {
 
     @Autowired
     CandidateService candidateService;
+    
+    @GetMapping(value = "/candidate/")
+    public HttpEntity<List<Candidate>> getAllCandidates(){
+        List<Candidate> candidates = candidateService.getAllCandidates();
+        return new ResponseEntity<>(candidates, HttpStatus.OK);
+    }
 
     @PostMapping(value = "/candidate")
     public HttpEntity<Candidate> addCandidate(@RequestBody Candidate candidate) {
@@ -28,12 +34,6 @@ public class CandidateController {
     public HttpEntity<Candidate> getCandidateById(@PathVariable("id") String id) {
         Candidate cand = candidateService.getById(id);
         return hasEntity(cand);
-    }
-
-    @GetMapping(value = "/candidate/")
-    public HttpEntity<List<Candidate>> getAllCandidates(){
-        List<Candidate> candidates = candidateService.getAllCandidates();
-        return new ResponseEntity<>(candidates, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/candidate/{id}")

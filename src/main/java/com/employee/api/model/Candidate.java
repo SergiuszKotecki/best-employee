@@ -1,22 +1,22 @@
 package com.employee.api.model;
 
 import com.employee.api.config.LocalDateTimeConverter;
-import com.employee.api.model.enums.SkillLevel;
+import com.employee.api.model.enums.SkillLevelEnum;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.Email;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -24,8 +24,11 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = { "authorities" })
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Candidate implements Serializable {
+public class Candidate implements UserDetails {
+
+    private static final long serialVersionUID = 3709949243021685681L;
 
     @Id
     @ApiModelProperty(hidden = true)
@@ -47,20 +50,34 @@ public class Candidate implements Serializable {
     @NotNull
     private String lastName;
 
-    @NotNull
+    @Column(nullable = false, unique = true)
+    @Email(message = "Incorrect email format")
     private String email;
+
 
     @NotNull
     private String desiredPosition;
 
     @NotNull
-    private SkillLevel devLevel;
+    private SkillLevelEnum devLevel;
 
     @Embedded
     private Location location;
 
     @NotNull
     private boolean remote;
+
+    @Column
+    private boolean isAccountNonExpired;
+
+    @Column
+    private boolean isAccountNonLocked;
+
+    @Column
+    private boolean isCredentialsNonExpired;
+
+    @Column
+    private boolean isEnabled;
 
     @CreatedDate
     @ApiModelProperty(hidden = true)
@@ -73,5 +90,19 @@ public class Candidate implements Serializable {
     @Convert(converter = LocalDateTimeConverter.class)
     @ApiModelProperty(hidden = true)
     private LocalDateTime updatedAt;
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "appuser_role",
+            joinColumns = @JoinColumn(name = "appuser_id"),
+            inverseJoinColumns = @JoinColumn(name = "approle_id"))
+    private List<Role> authorities;
+
+    @Column(nullable = false)
+    @Size(min = 4, max = 100, message = "Password must be at least 4 characters long")
+    private String password;
+
+    @Column(nullable = false, unique = true, length = 25)
+    @Size(min = 3, max = 25, message = "Username must be between 3 and 20 characters long")
+    private String username;
 
 }
