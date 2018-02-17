@@ -52,43 +52,42 @@ fabric.properties
 
 # Specifies intentionally untracked files to ignore when using Git
 # http://git-scm.com/docs/gitignore
-/mobileApp/
-/mobileApp/*~
-/mobileApp/*.sw[mnpcod]
-/mobileApp/*.log
-/mobileApp/*.tmp
-/mobileApp/*.tmp.*
-/mobileApp/log.txt
-/mobileApp/*.sublime-project
-/mobileApp/*.sublime-workspace
-/mobileApp/.vscode/
-/mobileApp/npm-debug.log*
 
-/mobileApp/.idea/
-/mobileApp/.sourcemaps/
-/mobileApp/.sass-cache/
-/mobileApp/.tmp/
-/mobileApp/.versions/
-/mobileApp/coverage/
-/mobileApp/dist/
-/mobileApp/node_modules/
-/mobileApp/tmp/
-/mobileApp/temp/
-/mobileApp/hooks/
-/mobileApp/platforms/
-/mobileApp/plugins/
-/mobileApp/plugins/android.json
-/mobileApp/plugins/ios.json
-/mobileApp/www/
-/mobileApp/$RECYCLE.BIN/
+*~
+*.sw[mnpcod]
+*.log
+*.tmp
+*.tmp.*
+log.txt
+*.sublime-project
+*.sublime-workspace
+.vscode/
+npm-debug.log*
+
+.idea/
+.sourcemaps/
+.sass-cache/
+.tmp/
+.versions/
+coverage/
+dist/
+node_modules/
+tmp/
+temp/
+hooks/
+platforms/
+plugins/
+plugins/android.json
+plugins/ios.json
+www/
+$RECYCLE.BIN/
 
 .DS_Store
-/mobileApp/Thumbs.db
-/mobileApp/UserInterfaceState.xcuserstate
+Thumbs.db
+UserInterfaceState.xcuserstate
 
 .idea/inspectionProfiles/
 target
 .idea/sonarlint/
-.idea/
 api/src/main/resources/static/
 api/src/main/resources/templates/
